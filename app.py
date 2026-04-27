@@ -63,7 +63,24 @@ def get_recipes_from_db(cuisine):
         })
 
     return recipes
+    
+def get_recipes_from_db(cuisine):
+    try:
+        conn = get_db()
+        cursor = conn.cursor(dictionary=True)
 
+        cursor.execute(
+            "SELECT * FROM recipes WHERE cuisine=%s LIMIT 20",
+            (cuisine,)
+        )
+
+        data = cursor.fetchall()
+        conn.close()
+        return data
+
+    except Exception as e:
+        print("DB Error:", e)
+        return []
 # ---------------- FETCH FROM API ----------------
 def fetch_from_api(cuisine):
     try:
