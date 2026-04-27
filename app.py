@@ -7,11 +7,11 @@ import os
 # ---------------- DB CONNECTION ----------------
 def get_db():
     return mysql.connector.connect(
-        host=os.getenv("MYSQLHOST"),
-        port=int(os.getenv("MYSQLPORT")),
-        user=os.getenv("MYSQLUSER"),
-        password=os.getenv("MYSQLPASSWORD"),
-        database=os.getenv("MYSQLDATABASE")
+       host=st.secrets["MYSQLHOST"],
+       port=int(st.secrets["MYSQLPORT"]),
+       user=st.secrets["MYSQLUSER"],
+       password=st.secrets["MYSQLPASSWORD"],
+       database=st.secrets["MYSQLDATABASE"]
     )
 
 # ---------------- SAVE TO DB ----------------
