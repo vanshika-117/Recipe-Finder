@@ -2,14 +2,16 @@ import streamlit as st
 import requests
 import mysql.connector
 import json
+import os
 
 # ---------------- DB CONNECTION ----------------
 def get_db():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="Vanshika@2007",
-        database="recipe_app"
+        host=os.getenv("MYSQLHOST"),
+        port=int(os.getenv("MYSQLPORT")),
+        user=os.getenv("MYSQLUSER"),
+        password=os.getenv("MYSQLPASSWORD"),
+        database=os.getenv("MYSQLDATABASE")
     )
 
 # ---------------- SAVE TO DB ----------------
